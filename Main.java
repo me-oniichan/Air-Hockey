@@ -17,12 +17,7 @@ public class Main {
 
         //Game loop
 
-        new Timer(100, new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                board.repaint();
-            }
-        }).start();
+        new Timer(15, e -> board.repaint()).start();
 
     }
 }
