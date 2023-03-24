@@ -5,19 +5,22 @@ import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 
 public class Caret extends JPanel{
-    ImageIcon image = new ImageIcon("Images/Puck1.png");
+    Image image;
     int radius = 75;
     int x = Const.WIDTH/2-radius;
     int y = Const.HEIGHT/2-radius;
 
+    //origin for drag
     int histx =x, histy=y;
+
+    //temp vars to handle drag
     int posx,posy;
 
+    //velocity calculating components
+    int velx, vely, lastx, lasty;
+
     Caret(boolean listener){
-        JLabel label = new JLabel("", image, JLabel.CENTER);
-        label.setPreferredSize(new Dimension(170,170));
-        this.add(label);
-        label.setVisible(true);
+        image = new ImageIcon("Images/Puck1.png").getImage();
         this.setOpaque(false);
         if(listener) {
             this.addMouseListener(new MouseListener() {
@@ -30,7 +33,7 @@ public class Caret extends JPanel{
 
                 @Override
                 public void mouseReleased(MouseEvent e) {
-
+                    histx = x; histy= y;
                 }
                 @Override
                 public void mouseEntered(MouseEvent e) {}
@@ -41,20 +44,31 @@ public class Caret extends JPanel{
                 @Override
                 public void mouseDragged(MouseEvent e) {
                     int delx = e.getXOnScreen()-posx, dely = e.getYOnScreen()-posy;
-                    System.out.println(delx+" "+dely);
+                    System.out.println(velx+" "+vely);
                     move_(delx,dely);
                 }
 
                 @Override
                 public void mouseMoved(MouseEvent e) {
-//                    System.out.println("entered");
                 }
             });
         }
         this.setVisible(true);
+
+        new Timer(15, e-> {
+            velx = (this.x - lastx);
+            vely = (this.y - lasty);
+            lastx=this.x; lasty = this.y;
+        }).start();
     }
+
+    @Override
+    public void paintComponent(Graphics g) {
+        Graphics2D canvas = (Graphics2D)g;
+        canvas.drawImage(image, 0,0, 150,150, null);
+    }
+
     void move_(int x, int y){
-        System.out.println(posx);
         this.x=histx+x; this.y=histy+y;
     }
 }
