@@ -24,15 +24,22 @@ public class Main extends JFrame{
             this.setUndecorated(true);
         }catch (Exception ignored){}
 
+            this.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowOpened(WindowEvent e) {
+                super.windowOpened(e);
+                bg.placeCaret();
+            }
+        });
         this.addMouseMotionListener(new MouseMotionListener() {
             @Override
             public void mouseDragged(MouseEvent e) {
-                bg.player1.motion(e.getX(), e.getY());
+                bg.player1.motion(e.getXOnScreen(), e.getYOnScreen());
             }
 
             @Override
             public void mouseMoved(MouseEvent e) {
-                bg.player1.motion(e.getX(), e.getY());
+                bg.player1.motion(e.getXOnScreen(), e.getYOnScreen());
             }
         });
 
@@ -40,12 +47,5 @@ public class Main extends JFrame{
     }
     public static void main(String[] args) {
         Main main = new Main();
-        main.addWindowListener(new WindowAdapter() {
-            @Override
-            public void windowOpened(WindowEvent e) {
-                super.windowOpened(e);
-                main.bg.placeCaret();
-            }
-        });
     }
 }

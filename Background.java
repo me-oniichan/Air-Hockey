@@ -15,6 +15,7 @@ public class Background extends JLabel{
 
         this.setVisible(true);
 
+//        Constants.startx = getWidth()
     }
 
     void moveCaret(){
