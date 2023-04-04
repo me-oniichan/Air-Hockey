@@ -1,8 +1,8 @@
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.WindowEvent;
-import java.awt.event.WindowListener;
-import java.awt.event.WindowStateListener;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseMotionListener;
 
 public class Background extends JLabel{
     Caret player1 = new Caret();
@@ -17,7 +17,11 @@ public class Background extends JLabel{
 
     }
 
+    void moveCaret(){
+        player1.setLocation(player1.x, player1.y);
+    }
+
     void placeCaret(){
-        player1.setLocation(getWidth()/2-player1.radius, getHeight()/2-player1.radius);
+        player1.setpos(getWidth()/2-player1.radius, getHeight()/2);
     }
 }

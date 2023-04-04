@@ -1,8 +1,6 @@
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
-import java.awt.event.WindowListener;
+import java.awt.event.*;
 
 public class Main extends JFrame{
     Background bg;
@@ -11,6 +9,7 @@ public class Main extends JFrame{
         this.setLayout(new BorderLayout());
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.getContentPane().setBackground(Color.black);
+        this.setResizable(false);
 
 //        this.setPreferredSize(new Dimension(Constants.width, Constants.height));
         this.setBounds(0,0,Constants.width, Constants.height);
@@ -23,8 +22,21 @@ public class Main extends JFrame{
         this.setExtendedState(this.getExtendedState() | MAXIMIZED_BOTH);
         try{
             this.setUndecorated(true);
-        }catch (Exception e){};
-//        pack();
+        }catch (Exception ignored){}
+
+        this.addMouseMotionListener(new MouseMotionListener() {
+            @Override
+            public void mouseDragged(MouseEvent e) {
+                bg.player1.motion(e.getX(), e.getY());
+            }
+
+            @Override
+            public void mouseMoved(MouseEvent e) {
+                bg.player1.motion(e.getX(), e.getY());
+            }
+        });
+
+        new Timer(12, (e)-> bg.moveCaret()).start();
     }
     public static void main(String[] args) {
         Main main = new Main();
