@@ -17,6 +17,14 @@ public class Caret extends JLabel{
         this.setIcon(img);
         this.setBounds(0,0,100,100);
         this.setVisible(true);
+
+        new Timer(10, (e)->{
+            velx = this.x-prevx;
+            vely = this.y-prevy;
+            prevy = this.y;
+            prevx = this.x;
+            System.out.println(velx+" "+vely);
+        }).start();
     }
 
     void motion(int x, int y){

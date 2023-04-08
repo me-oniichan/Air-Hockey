@@ -27,7 +27,6 @@ public class Background extends JLabel{
                 if(y<getHeight()/2+player1.radius) y = getHeight()/2+player1.radius;
                 else if (y>getHeight()-player1.radius)  y = getHeight()-player1.radius;
 
-                System.out.println(e.getXOnScreen());
                 //Restrict motion in x direction
                 if(x<520+player1.radius) x=520+player1.radius;
                 else if (x>1015-player1.radius)  x=1015-player1.radius;
