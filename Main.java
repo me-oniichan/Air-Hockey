@@ -11,18 +11,15 @@ public class Main extends JFrame{
         this.getContentPane().setBackground(Color.black);
         this.setResizable(false);
 
-//        this.setPreferredSize(new Dimension(Constants.width, Constants.height));
         this.setBounds(0,0,Constants.width, Constants.height);
 
-
-        this.bg = new Background();
+        try {
+            this.bg = new Background();
+        }catch (Exception ignore){};
         this.add(this.bg, BorderLayout.CENTER);
 
         this.setVisible(true);
-        this.setExtendedState(this.getExtendedState() | MAXIMIZED_BOTH);
-        try{
-            this.setUndecorated(true);
-        }catch (Exception ignored){}
+        this.setExtendedState(MAXIMIZED_BOTH | getExtendedState());
 
             this.addWindowListener(new WindowAdapter() {
             @Override
@@ -31,17 +28,7 @@ public class Main extends JFrame{
                 bg.placeCaret();
             }
         });
-        this.addMouseMotionListener(new MouseMotionListener() {
-            @Override
-            public void mouseDragged(MouseEvent e) {
-                bg.player1.motion(e.getXOnScreen(), e.getYOnScreen());
-            }
 
-            @Override
-            public void mouseMoved(MouseEvent e) {
-                bg.player1.motion(e.getXOnScreen(), e.getYOnScreen());
-            }
-        });
 
         new Timer(12, (e)-> bg.moveCaret()).start();
     }
