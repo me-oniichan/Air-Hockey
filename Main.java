@@ -1,5 +1,3 @@
-import entities.Constants;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.WindowAdapter;

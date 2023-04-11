@@ -1,24 +1,17 @@
-package entities;
-
 import javax.swing.*;
 import java.awt.*;
 
 
 public class Caret extends JLabel {
-    //Position of entities.Caret
-    public int x = 0;
-    public int y = 0;
-    public int radius = 37;
+    //Position of Caret
+    int x = 0, y = 0, radius = 37;
 
 
     //Velocity elements
-    public int velx;
-    public int vely;
-    int prevx;
-    int prevy;
+    int velx, vely, prevx, prevy;
 
-    public Caret() {
-        ImageIcon img = new ImageIcon(Constants.mallet1);
+    Caret() {
+        ImageIcon img = new ImageIcon(new ImageIcon("images/Puck1.png").getImage().getScaledInstance(80, 80, Image.SCALE_DEFAULT));
         this.setIcon(img);
         this.setBounds(0, 0, 80, 80);
         this.setVisible(true);
@@ -31,7 +24,7 @@ public class Caret extends JLabel {
         }).start();
     }
 
-    public void motion(int x, int y) {
+    void motion(int x, int y) {
         if (y - radius > Constants.height / 2) this.y = y - radius;
         this.x = x - radius;
     }
