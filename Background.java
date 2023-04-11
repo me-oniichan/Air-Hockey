@@ -43,4 +43,8 @@ public class Background extends JLabel {
          */
     }
 
+    void plotEntites(){
+        player1.setLocation(player1.x,player1.y);
+    }
+
 }

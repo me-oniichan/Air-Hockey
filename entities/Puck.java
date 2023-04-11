@@ -23,4 +23,9 @@ public class Puck extends JLabel {
 //            if (y <= Constants.radius) vy*=-1;
 //        }).start();
     }
+
+    public void init(int width, int height){
+        this.x = width/2 - Constants.radius;
+        this.y = height/2 - Constants.radius;
+    }
 }
