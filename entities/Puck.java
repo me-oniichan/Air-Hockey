@@ -8,8 +8,8 @@ public class Puck extends JLabel {
     public int y;
     ImageIcon icon;
     //velocity component
-    public double vx;
-    public double vy;
+    public int vx;
+    public int vy;
     public Puck(){
         icon = new ImageIcon(Constants.puck);
         this.setIcon(icon);

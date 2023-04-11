@@ -4,6 +4,8 @@ import entities.Puck;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
@@ -17,9 +19,7 @@ public class Main extends JFrame {
         this.setLayout(new BorderLayout());
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.getContentPane().setBackground(Color.black);
-//        this.setResizable(false);
 
-        this.setBounds(0, 0, Constants.width, Constants.height);
 
         try {
             this.bg = new Background();
@@ -35,18 +35,27 @@ public class Main extends JFrame {
         this.addWindowListener(new WindowAdapter() {
             @Override
             public void windowOpened(WindowEvent e) {
-                super.windowOpened(e);
                 player1.init(getWidth(), getHeight());
-            }
-
-            @Override
-            public void windowStateChanged(WindowEvent e) {
-                super.windowStateChanged(e);
-                player1.init(getWidth(), getHeight());
+                puck.init(getWidth(), getHeight());
+                Constants.width = bg.getWidth();
+                Constants.height = bg.getHeight();
+                ref.setMinimumSize(new Dimension(Constants.width, Constants.height));
             }
         });
 
-        new Timer(12, (e) -> bg.plotEntites()).start();
+        this.addComponentListener(new ComponentAdapter() {
+            @Override
+            public void componentResized(ComponentEvent e) {
+                Constants.width = bg.getWidth();
+                Constants.height = bg.getHeight();
+                player1.init(getWidth(), getHeight());
+                puck.init(getWidth(), getHeight());
+            }
+        });
+//        this.pack();
+
+        new Gameloop();
+
     }
 
     public static void main(String[] args) {

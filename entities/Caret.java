@@ -8,7 +8,7 @@ public class Caret extends JLabel {
     //Position of entities.Caret
     public int x = 0;
     public int y = 0;
-    public int radius = 37;
+    public int radius = 40;
 
 
     //Velocity elements
@@ -38,7 +38,7 @@ public class Caret extends JLabel {
 
     public void init(int width, int height){
         this.x = width/2 - Constants.radius;
-        this.y = height/2 - Constants.radius;
+        this.y = height/2 - Constants.radius+100;
     }
 
 }
