@@ -1,13 +1,17 @@
+package entities;
+
 import javax.swing.*;
 import java.awt.*;
 
-final class Constants {
+public final class Constants {
     final static double drag = 0.01d;
     static public Image puck = new ImageIcon("images/Puck3.png").getImage().getScaledInstance(80,80,Image.SCALE_DEFAULT);
+    static public Image mallet1 = new ImageIcon("images/Puck3.png").getImage().getScaledInstance(80,80,Image.SCALE_DEFAULT);
     final public static int radius = 37;
 
-    static int width = 600, height = 800;
-    static Robot r = null;
+    public static int width = 600;
+    public static int height = 800;
+    public static Robot r = null;
 
     static {
         try {
