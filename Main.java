@@ -33,8 +33,6 @@ public class Main extends JFrame {
             }
         });
 
-
-
         new Timer(12, (e) -> bg.moveCaret()).start();
     }
 
