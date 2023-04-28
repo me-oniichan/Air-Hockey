@@ -1,16 +1,16 @@
 package entities;
 
 import javax.swing.*;
-import java.awt.*;
 
 public class Puck extends JLabel {
     public int x;
     public int y;
-    ImageIcon icon;
     //velocity component
     public int vx;
     public int vy;
-    public Puck(){
+    ImageIcon icon;
+
+    public Puck() {
         icon = new ImageIcon(Constants.puck);
         this.setIcon(icon);
         this.setBounds(0, 0, 80, 80);
@@ -24,8 +24,8 @@ public class Puck extends JLabel {
 //        }).start();
     }
 
-    public void init(int width, int height){
-        this.x = width/2 - Constants.radius;
-        this.y = height/2 - Constants.radius;
+    public void init(int width, int height) {
+        this.x = width / 2 - Constants.radius;
+        this.y = height / 2 - Constants.radius;
     }
 }

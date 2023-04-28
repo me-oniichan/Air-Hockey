@@ -4,8 +4,6 @@ import entities.Puck;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ComponentAdapter;
-import java.awt.event.ComponentEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
@@ -19,37 +17,29 @@ public class Main extends JFrame {
         this.setLayout(new BorderLayout());
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.getContentPane().setBackground(Color.black);
-
+        this.setLocationRelativeTo(null);
 
         try {
             this.bg = new Background();
         } catch (Exception ignore) {
         }
-        ;
         this.add(this.bg, BorderLayout.CENTER);
 
         this.setExtendedState(MAXIMIZED_BOTH | getExtendedState());
         this.setVisible(true);
 
-        Main ref = this;
+        Entities.ref = this;
         this.addWindowListener(new WindowAdapter() {
             @Override
             public void windowOpened(WindowEvent e) {
-                player1.init(getWidth(), getHeight());
+                Constants.r.mouseMove(700, 400);
+                player1.init(getWidth(), getHeight() + 100);
                 puck.init(getWidth(), getHeight());
-                Constants.width = bg.getWidth();
-                Constants.height = bg.getHeight();
-                ref.setMinimumSize(new Dimension(Constants.width, Constants.height));
-            }
-        });
-
-        this.addComponentListener(new ComponentAdapter() {
-            @Override
-            public void componentResized(ComponentEvent e) {
-                Constants.width = bg.getWidth();
-                Constants.height = bg.getHeight();
-                player1.init(getWidth(), getHeight());
-                puck.init(getWidth(), getHeight());
+                Constants.width = getWidth();
+                Constants.height = getHeight();
+//                ref.setMinimumSize(new Dimension(Constants.width, Constants.height));
+                System.out.println(getWidth() / 2 + " " + getHeight() / 2);
+                System.out.println(Entities.ref.getMousePosition().x + " " + Entities.ref.getMousePosition().y);
             }
         });
 //        this.pack();

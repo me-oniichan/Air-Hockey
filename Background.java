@@ -1,11 +1,8 @@
 import entities.Caret;
-import entities.Constants;
 import entities.Puck;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseMotionListener;
 
 public class Background extends JLabel {
     Caret player1 = Entities.player1;
@@ -41,10 +38,6 @@ public class Background extends JLabel {
             }
         });
          */
-    }
-
-    void plotEntites(){
-        player1.setLocation(player1.x,player1.y);
     }
 
 }

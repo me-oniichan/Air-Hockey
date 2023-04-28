@@ -1,7 +1,6 @@
 package entities;
 
 import javax.swing.*;
-import java.awt.*;
 
 
 public class Caret extends JLabel {
@@ -36,9 +35,9 @@ public class Caret extends JLabel {
         this.x = x - radius;
     }
 
-    public void init(int width, int height){
-        this.x = width/2 - Constants.radius;
-        this.y = height/2 - Constants.radius+100;
+    public void init(int width, int height) {
+        this.x = width / 2 - Constants.radius;
+        this.y = height / 2 - Constants.radius + 100;
     }
 
 }
